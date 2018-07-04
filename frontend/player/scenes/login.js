@@ -16,7 +16,7 @@ class Login extends Component {
 
   componentDidMount() {
     const sceneRef = this;
-    sceneRef.props.changeSceneTitle(sceneRef, "" /* TBD. */);
+    sceneRef.props.changeSceneTitle(sceneRef, __("loginPageTitle"));
   }
 
   componentWillUnmount() {}
@@ -50,7 +50,7 @@ class Login extends Component {
     const sceneRef = this;
 
     const mainScene = (
-      <div style={ { textAlign: 'center', } }>
+      <div style={ { textAlign: 'center' } }>
       </div>
     );
 

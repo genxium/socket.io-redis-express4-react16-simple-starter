@@ -123,7 +123,7 @@ class PlayerRouterCollection extends AbstractAuthRouterCollection {
   }
 
   spaRender(req, res, customMetaKeywords, customMetaDescription, customTitle) {
-    const xBundleUri = '/bin/player.bundle.js';
+    const xBundleUri = util.format('/bin/player.%s.bundle.js', ('string' == typeof req.query.lang ? req.query.lang : 'zh_cn'));
     const paramDict = {
       title: ('string' == typeof customTitle ? customTitle : ""),
       metaKeywords: ('string' == typeof customMetaKeywords ? customMetaKeywords : ""),

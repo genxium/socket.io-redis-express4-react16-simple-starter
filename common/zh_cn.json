@@ -1,0 +1,5 @@
+{
+  "loginPageTitle": "登入页面",
+  "testPageTitle": "测试页面",
+  "testPageHint": "此测试页面表示你的backend-router (e.g. express.Router)和frontend-router (e.g. react-router)都正常工作中."
+}

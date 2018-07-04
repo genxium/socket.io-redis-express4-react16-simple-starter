@@ -1,0 +1,5 @@
+{
+  "loginPageTitle": "Login Page",
+  "testPageTitle": "Test Page",
+  "testPageHint": "This is a test page to show that both your backend-router (e.g. express.Router) and frontend-router (e.g. react-router) are working."
+}

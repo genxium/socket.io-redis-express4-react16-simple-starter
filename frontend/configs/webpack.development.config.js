@@ -1,16 +1,12 @@
 const baseAbsPath = __dirname + '/';
 const webModuleAbsPath = baseAbsPath + '../node_modules';
 
-const commonConfig = require(baseAbsPath + './webpack_common_config').default;
+const commonConfig = require(baseAbsPath + './webpack_common_config');
 const webpack = require(webModuleAbsPath + '/webpack');
 
 const toExport = {
   mode: 'development',
   devtool: 'eval',
-  plugins: [
-    // Ignore all locale files of moment.js
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
-  ],
   optimization: {
     // Refernece https://webpack.js.org/plugins/split-chunks-plugin/.
     splitChunks: {
@@ -38,4 +34,30 @@ const toExport = {
 
 Object.assign(toExport, commonConfig);
 
-module.exports = toExport;
+const I18nPlugin = require("i18n-webpack-plugin");
+const languages = {
+  en_gb: require(baseAbsPath + "../../common/en_gb.json"),
+  zh_cn: require(baseAbsPath + "../../common/zh_cn.json")
+};
+
+module.exports = Object.keys(languages).map(function(language) {
+  const toRet = {};
+  Object.assign(toRet, toExport);
+  Object.assign(toRet, {
+    name: language 
+  });
+  toRet.plugins = [new I18nPlugin(languages[language])];
+  for (let val of toExport.plugins) {
+    toRet.plugins.push(val);
+  }
+
+  toRet.output = {};
+  for (let k in toExport.output) {
+    toRet.output[k] = toExport.output[k];
+  }
+  Object.assign(toRet.output, {
+    filename: '[name].' + language + '.bundle.js',
+    chunkFilename: '[name].' + language + '.bundle.js',
+  });
+	return toRet;
+});

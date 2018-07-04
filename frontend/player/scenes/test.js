@@ -13,7 +13,7 @@ class TestPage extends Component {
 
   componentDidMount() {
     const sceneRef = this;
-    sceneRef.props.changeSceneTitle(sceneRef, "Test page");
+    sceneRef.props.changeSceneTitle(sceneRef, __("testPageTitle"));
   }
 
   componentWillUnmount() {}
@@ -22,8 +22,8 @@ class TestPage extends Component {
     const sceneRef = this;
 
     const mainScene = (
-      <div style={ { textAlign: 'left', } }>
-        This is a test page to show that both your backend-router (e.g. express.Router) and frontend-router (e.g. react-router) are working.
+      <div style={ { textAlign: 'left' } }>
+        {__("testPageHint")}
       </div>
     );
 

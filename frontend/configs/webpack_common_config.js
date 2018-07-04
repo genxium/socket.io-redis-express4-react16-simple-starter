@@ -3,6 +3,8 @@ const baseAbsPath = __dirname + '/';
 const constants = require(baseAbsPath + '../../common/constants');
 const webModuleAbsPath = baseAbsPath + '../node_modules';
 
+const webpack = require(webModuleAbsPath + '/webpack');
+
 const commonConfig = {
   resolve: {
     modules: [
@@ -92,13 +94,15 @@ const commonConfig = {
       },
     ]
   },
+  plugins: [
+    // Ignore all locale files of moment.js
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+  ],
   output: {
     path: baseAbsPath + '../bin',
     publicPath: constants.ROUTE_PATHS.BASE + '/bin/', // NOTE: For chunk loading.
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
     sourceMapFilename: '[file].map'
   }
 };
 
-exports.default  = commonConfig;
+module.exports  = commonConfig;
