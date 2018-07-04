@@ -1,0 +1,30 @@
+#!/bin/bash
+
+basedir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+config_templates="$basedir/configs/*.conf.template"
+
+for template in $config_templates
+do
+  conf="$(echo $template | sed 's/\(.*\)\.conf\.template/\1\.conf/g')" # beware of the escaping  
+  echo "$template > $conf"
+  cp $template $conf
+done
+
+skeema_templates="$basedir/../database/skeema-repo-root/.skeema.template"
+
+for template in $skeema_templates
+do
+  skeema_conf="$(echo $template | sed 's/\(.*\)\.template/\1/g')" # beware of the escaping  
+  echo "$template > $skeema_conf"
+  cp $template $skeema_conf
+done
+
+sqlite_templates="$basedir/configs/*.sqlite.template"
+
+for template in $sqlite_templates
+do
+  sqlite_file="$(echo $template | sed 's/\(.*\)\.sqlite\.template/\1\.sqlite/g')" # beware of the escaping  
+  echo "$template > $sqlite_file"
+  cp $template $sqlite_file
+done

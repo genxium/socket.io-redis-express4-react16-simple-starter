@@ -1,0 +1,41 @@
+{
+  "name": "the-frontend",
+  "private": true,
+  "scripts": {
+    "build-development": "node --max_old_space_size=65535 ./node_modules/webpack/bin/webpack.js -d --config ./configs/webpack.development.config.js --progress --color --profile --watch",
+    "build-production": "node --max_old_space_size=65535 ./node_modules/webpack/bin/webpack.js --config ./configs/webpack.production.config.js --progress --color --profile"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "crypto-js": "^3.1.8",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
+    "moment": "^2.22.2",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-router-dom": "^4.3.1",
+    "react-transition-group": "^1.2.1",
+    "react-loadable": "^5.4.0",
+    "socket.io-client": "^2.1.1",
+    "vconsole": "^3.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "file-loader": "^1.1.11",
+    "image-webpack-loader": "^4.3.1",
+    "mini-css-extract-plugin": "^0.4.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.3",
+    "style-loader": "^0.13.1",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.12.0",
+    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-cli": "^3.0.4"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "socket.io-redis-express4-react16-simple-starter",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "docgen": "node ./node_modules/apidoc/bin/apidoc --color -i ./backend -e ./node_modules -o ./docs/"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.15.2",
+    "bunyan": "^1.8.12",
+    "bunyan-prettystream": "^0.1.3",
+    "compression": "^1.7.2",
+    "cors": "^2.8.1",
+    "express": "^4.16.3",
+    "js-yaml": "^3.12.0",
+    "mysql2": "^1.4.2",
+    "pug": "^2.0.3",
+    "redis": "^2.8.0",
+    "request": "^2.87.0",
+    "sequelize": "4.10.3",
+    "serve-favicon": "^2.5.0",
+    "socket.io-redis": "^5.2.0",
+    "socket.io-server": "^1.0.0-b",
+    "sqlite3": "^4.0.0"
+  },
+  "devDependencies": {
+    "apidoc": "^0.17.6"
+  }
+}

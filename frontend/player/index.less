@@ -1,0 +1,29 @@
+@iphoneXNotchPx: 40px;
+@reactRootDefaultHeight: 100%;
+@reactRootIphoneXtHeight: ~"100% - 32px";;
+
+body {
+  padding: 3px;
+  padding-top: 20px;
+  background-size: cover;
+}
+
+#react-root {
+}
+
+.iphone-x {
+  position: absolute;  
+  top: @iphoneXNotchPx; 
+  height: -webkit-calc(@reactRootIphoneXtHeight);
+  height:    -moz-calc(@reactRootIphoneXtHeight);
+  height:         calc(@reactRootIphoneXtHeight);
+}
+
+.notch-left {
+
+}
+
+.notch-right {
+
+}
+
