@@ -3,5 +3,5 @@
   port: 3306,
   username: 'root',
   password: '',
-  dbname: 'happy_thursday'
+  dbname: 'react_express_prac'
 }  

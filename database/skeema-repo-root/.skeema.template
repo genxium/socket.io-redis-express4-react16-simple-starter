@@ -2,7 +2,7 @@
 socket=/tmp/mysql.sock # Depending on the live MySQL server version and host OS, this "socket path" might vary. For example on "Ubuntu14.04/16.04", it's possible to find it via grepping "socket" of "/etc/my.cnf" or "/etc/mysql/".
 user=root
 host=localhost
-schema=lounge
+schema=react_express_prac
 
 [development]
 socket=/tmp/mysql.sock # Alternative for "Ubuntu16.04 + MySQL5.7" could be "/var/run/mysqld/mysqld.sock".
@@ -12,4 +12,4 @@ allow-unsafe
 skip-alter-wrapper
 skip-alter-algorithm
 skip-alter-lock
-schema=lounge_test
+schema=react_express_prac_test
