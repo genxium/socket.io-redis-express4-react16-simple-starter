@@ -2,15 +2,19 @@ const baseAbsPath = __dirname + '/';
 
 const Sequelize = require('sequelize');
 
-const Logger = require('../utils/Logger');
+const logger = require('../utils/Logger').instance.getLogger();
 const SQLiteManager = require('../utils/SQLiteManager');
 
 const PlayerTest = SQLiteManager.instance.dbRef.define('player_test', {
   id: {
     type: Sequelize.INTEGER,
-    primaryKey: true
+    primaryKey: true,
+    autoIncrement: true
   },
-  display_name: {
+  raw_password: {
+    type: Sequelize.STRING
+  },
+  unique_name: {
     type: Sequelize.STRING
   },
   created_at: {
@@ -21,14 +25,11 @@ const PlayerTest = SQLiteManager.instance.dbRef.define('player_test', {
   },
   deleted_at: {
     type: Sequelize.INTEGER
-  },
-  sign: {
-    type: Sequelize.STRING
   }
-},
-  {
-    tableName: 'player_test',
-    timestamps: false
-  });
+
+}, {
+  tableName: 'player_test',
+  timestamps: false
+});
 
 module.exports = PlayerTest;

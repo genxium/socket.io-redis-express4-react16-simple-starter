@@ -6,10 +6,16 @@ const Logger = require('../utils/Logger');
 const MySQLManager = require('../utils/MySQLManager');
 
 const Player = MySQLManager.instance.dbRef.define('player', {
-  player_id: {
+  id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true
+  },
+  raw_password: {
+    type: Sequelize.STRING
+  },
+  unique_name: {
+    type: Sequelize.STRING
   },
   created_at: {
     type: Sequelize.INTEGER

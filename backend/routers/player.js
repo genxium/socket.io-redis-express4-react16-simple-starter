@@ -37,9 +37,20 @@ const tokenAuthImpl = function(req, res, next) {
     return instance.tokenExpired(res);
   }
   tokenCache.getASync(token)
-    .then(function(result) {
-      if (null === result) return instance.tokenExpired(res);
-      return next();
+    .then(function(entityInfo) {
+      if (null == entityInfo) {
+        throw new signals.GeneralFailure(constants.RET_CODE.TOKEN_EXPIRED)
+      } else {
+        req.loggedInRole = entityInfo;
+        throw new signals.GeneralFailure(constants.RET_CODE.OK)
+      }
+    })
+    .catch((err) => {
+      if (constants.RET_CODE.OK == err.ret) {
+        return next();
+      } else {
+        return instance.respondWithError(err);
+      }
     });
 };
 
@@ -133,6 +144,5 @@ class PlayerRouterCollection extends AbstractAuthRouterCollection {
     res.render('index', paramDict);
   }
 }
-
 
 module.exports = PlayerRouterCollection;

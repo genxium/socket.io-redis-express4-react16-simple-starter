@@ -13,16 +13,19 @@ const redisAdapter = require('socket.io-redis');
 const MySQLManager = require('./utils/MySQLManager');
 const SQLiteManager = require('./utils/SQLiteManager');
 const MagicConstsManager = require('./utils/MagicConstsManager');
+const TestPlayerAccountsManager = require('./utils/TestPlayerAccountsManager');
 
 const yaml = require('js-yaml');
 const fs = require('fs');
 
 /*
 * Initialization of `socket.io-server` under a `worker-process` launched & managed by `pm2`. 
+*
+* - The socket.io-server will reset its session watchdog for another "(pingInterval + pingTimeout)", within which ANY packet from the client side (including but not limited to "ping") should be received to maintain the session, and as well reset the session watchdog. Hence "pingInterval" is recommended to be way less than "pingTimeout" to ensure sufficient tolerance of packet loss.  
 */
 const io = require('socket.io')(http, {
   path: '/sio',
-  pingInterval: 2000,
+  pingInterval: 200,
   pingTimeout: 2000
 });
 
@@ -56,10 +59,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
-
-// Pug template. Reference http://expressjs.com/en/guide/using-template-engines.html
-app.set('view engine', 'pug');
-app.set('views', baseAbsPath + './pugs');
 
 /*------------------------*/
 
@@ -107,7 +106,22 @@ MySQLManager.instance.testConnectionAsync()
 })
 .then(() => {
   logger.info("[COMPLETE] Initializes MagicConstsManager.instance.magicConsts.");
-
+  if (constants.NOT_IN_PRODUCTION) {
+    logger.info("[ONGOING] Initializes TestPlayerAccountsManager.");
+    return TestPlayerAccountsManager.instance.initTestPlayerAccountsAsync()
+    .then(() => {
+      logger.info("[COMPLETE] Initializes TestPlayerAccountsManager.");
+      return new Promise((resolve, reject) => {
+        resolve(null); 
+      }); 
+    });
+  } else {
+    return new Promise((resolve, reject) => {
+      resolve(null); 
+    }); 
+  }
+})
+.then((nothing) => {
   const PlayerRouterCollection = require('./routers/player');
   const playerRouterCollection = new PlayerRouterCollection();
 

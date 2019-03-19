@@ -30,13 +30,15 @@ class SingleRoleLoginCache {
         },
         deleted_at: null
       }
-    }).then((res) => {
+    })
+    .then((res) => {
       if (!NetworkFunc.isEmpty(res)) {
         return (res.dataValues);
       } else {
         return (null);
       }
-    }).catch(function(err) {
+    })
+    .catch(function(err) {
       logger.error(err);
       throw err;
     });
@@ -83,10 +85,11 @@ class SingleRoleLoginCache {
             .save()
             .then((loginRecord) => {
               return (loginRecord);
-            }).catch(function(err) {
-            logger.error(err);
-            throw err;
-          });
+            })
+            .catch(function(err) {
+              logger.error(err);
+              throw err;
+            });
         }
       })
       .catch((err) => {
