@@ -49,7 +49,7 @@ const tokenAuthImpl = function(req, res, next) {
       if (constants.RET_CODE.OK == err.ret) {
         return next();
       } else {
-        return instance.respondWithError(err);
+        return instance.respondWithError(res, err);
       }
     });
 };
