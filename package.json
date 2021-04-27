@@ -17,7 +17,7 @@
     "lodash": "^4.17.11",
     "mysql2": "^1.4.2",
     "pug": "^2.0.3",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "request": "^2.87.0",
     "sequelize": "4.10.3",
     "serve-favicon": "^2.5.0",
